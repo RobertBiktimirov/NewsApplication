@@ -52,16 +52,16 @@ android {
     }
 }
 
-afterEvaluate {
-    android.libraryVariants.forEach { variant ->
-        val variantCapped = variant.name.replaceFirstChar { it.uppercaseChar() }
-        val generateSafeArgsTask =
-            tasks.findByPath(":app:generateSafeArgs${variant.name.replaceFirstChar { it.uppercaseChar() }}")
-        val kotlinCompileTask =
-            tasks.findByName("compile${variantCapped}Kotlin") as org.jetbrains.kotlin.gradle.tasks.KotlinCompile
-        kotlinCompileTask.dependsOn(generateSafeArgsTask)
-    }
-}
+//afterEvaluate {
+//    android.libraryVariants.forEach { variant ->
+//        val variantCapped = variant.name.replaceFirstChar { it.uppercaseChar() }
+//        val generateSafeArgsTask =
+//            tasks.findByPath(":app:generateSafeArgs${variant.name.replaceFirstChar { it.uppercaseChar() }}")
+//        val kotlinCompileTask =
+//            tasks.findByName("compile${variantCapped}Kotlin") as org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+//        kotlinCompileTask.dependsOn(generateSafeArgsTask)
+//    }
+//}
 
 
 dependencies {
@@ -95,8 +95,8 @@ kapt {
     correctErrorTypes = true
 }
 
-//tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile>().configureEach {
-//    kotlinOptions {
-//        jvmTarget = ProjectConfig.jvmTarget
-//    }
-//}
+tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile>().configureEach {
+    kotlinOptions {
+        jvmTarget = ProjectConfig.jvmTarget
+    }
+}

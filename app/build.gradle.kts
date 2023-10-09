@@ -56,6 +56,8 @@ android {
 
 dependencies {
 
+    implementation(project(":feature:auth"))
+
     implementation(Dependencies.Android.coreKtx)
     implementation(Dependencies.Android.appcompat)
     implementation(Dependencies.Android.material)
