@@ -11,7 +11,7 @@ android {
     namespace = ProjectConfig.namespace
 
     defaultConfig {
-        applicationId = "ru.sample.zulipmessenger"
+        applicationId = ProjectConfig.applicationId
         minSdk = ProjectConfig.minSdk
         targetSdk = ProjectConfig.targetSdk
         versionCode = ProjectConfig.versionCode
@@ -41,10 +41,7 @@ android {
         jvmTarget = ProjectConfig.jvmTarget
     }
     buildFeatures {
-        compose = true
-    }
-    composeOptions {
-        kotlinCompilerExtensionVersion = Dependencies.Compose.compilerVersion
+        viewBinding = true
     }
     
     packaging {
@@ -56,7 +53,9 @@ android {
 
 dependencies {
 
-    implementation(project(":feature:auth"))
+    implementation(project(":core:api"))
+    implementation(project(":core:localStorage"))
+    implementation(project(":core:di"))
 
     implementation(Dependencies.Android.coreKtx)
     implementation(Dependencies.Android.appcompat)
@@ -67,19 +66,12 @@ dependencies {
     implementation(Dependencies.Dagger.dependency)
     kapt(Dependencies.Dagger.compiler)
 
-    implementation(Dependencies.Compose.ui)
-    implementation(Dependencies.Compose.ui_tooling)
-    implementation(Dependencies.Compose.runtime)
-    implementation(Dependencies.Compose.activity)
-    implementation(Dependencies.Compose.preview)
-    implementation(Dependencies.Compose.material)
-    implementation(Dependencies.Compose.material3)
-    implementation(Dependencies.Compose.compiler)
-    implementation(Dependencies.Compose.statusbar)
-    implementation(Dependencies.Android.lifecycleCompose)
-    implementation(Dependencies.Compose.pager)
-    implementation(Dependencies.Compose.pagerIndicator)
+    implementation(Dependencies.Room.ktx)
 
-    testImplementation(Dependencies.Testing.junit)
-    androidTestImplementation(Dependencies.Testing.testJunit)
+    implementation(Dependencies.Kotlin.Serialization.json)
+
+    implementation(Dependencies.Network.retrofit)
+    implementation(Dependencies.Network.okHttp)
+    implementation(Dependencies.Network.serializer)
+    implementation(Dependencies.Network.loggingInterceptor)
 }

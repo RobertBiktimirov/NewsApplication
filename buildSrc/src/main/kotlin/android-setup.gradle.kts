@@ -37,10 +37,7 @@ android {
     }
 
     buildFeatures {
-        compose = true
-    }
-    composeOptions {
-        kotlinCompilerExtensionVersion = Dependencies.Compose.compilerVersion
+        viewBinding = true
     }
 
     compileOptions {
@@ -52,43 +49,14 @@ android {
     }
 }
 
-//afterEvaluate {
-//    android.libraryVariants.forEach { variant ->
-//        val variantCapped = variant.name.replaceFirstChar { it.uppercaseChar() }
-//        val generateSafeArgsTask =
-//            tasks.findByPath(":app:generateSafeArgs${variant.name.replaceFirstChar { it.uppercaseChar() }}")
-//        val kotlinCompileTask =
-//            tasks.findByName("compile${variantCapped}Kotlin") as org.jetbrains.kotlin.gradle.tasks.KotlinCompile
-//        kotlinCompileTask.dependsOn(generateSafeArgsTask)
-//    }
-//}
-
 
 dependencies {
     implementation(Dependencies.Android.coreKtx)
     implementation(Dependencies.Android.appcompat)
     implementation(Dependencies.Android.material)
-
     implementation(Dependencies.Coroutines.android)
-
     implementation(Dependencies.Dagger.dependency)
     kapt(Dependencies.Dagger.compiler)
-
-    implementation(Dependencies.Compose.ui)
-    implementation(Dependencies.Compose.ui_tooling)
-    implementation(Dependencies.Compose.runtime)
-    implementation(Dependencies.Compose.activity)
-    implementation(Dependencies.Compose.preview)
-    implementation(Dependencies.Compose.material)
-    implementation(Dependencies.Compose.material3)
-    implementation(Dependencies.Compose.compiler)
-    implementation(Dependencies.Compose.statusbar)
-    implementation(Dependencies.Android.lifecycleCompose)
-    implementation(Dependencies.Compose.pager)
-    implementation(Dependencies.Compose.pagerIndicator)
-
-    testImplementation(Dependencies.Testing.junit)
-    androidTestImplementation(Dependencies.Testing.testJunit)
 }
 
 kapt {

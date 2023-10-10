@@ -12,8 +12,13 @@ dependencyResolutionManagement {
         mavenCentral()
     }
 }
-rootProject.name = "ZulipMessenger"
+rootProject.name = "NewsApplication"
 include(":app")
 include(":feature")
-include(":feature:chat")
-include(":feature:auth")
+include(":core")
+include(":feature:main")
+include(":feature:details")
+include(":core:ui")
+include(":core:api")
+include(":core:localStorage")
+include(":core:di")

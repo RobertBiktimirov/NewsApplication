@@ -1,7 +1,7 @@
 import org.gradle.api.JavaVersion
 
 object ProjectConfig {
-    const val namespace = "ru.sample.zulipmessenger"
+    const val namespace = "ru.intercommunication.newsapplication"
     fun namespace(name: String? = null) = "$namespace.$name"
 
     const val compileSdk = 33
