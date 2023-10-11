@@ -16,5 +16,6 @@ data class ArticleLocalDto(
     @ColumnInfo("title") val title: String,
     @ColumnInfo("url") val url: String,
     @ColumnInfo("urlToImage") val urlToImage: String,
-    @ColumnInfo("isFavorite") var isFavorite: Boolean = false
+    @ColumnInfo("isFavorite") var isFavorite: Boolean = false,
+    @ColumnInfo("comment") var comment: String = ""
 )

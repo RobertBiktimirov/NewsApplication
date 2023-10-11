@@ -1,7 +1,27 @@
 package ru.intercommunication.newsapplication.core.localStorage.dao
 
 import androidx.room.Dao
+import androidx.room.Insert
+import androidx.room.OnConflictStrategy
+import androidx.room.Query
+import kotlinx.coroutines.flow.Flow
+import ru.intercommunication.newsapplication.core.localStorage.dto.ArticleLocalDto
 
 @Dao
 interface NewsDao {
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun saveFavoriteArticle(articleLocalDto: ArticleLocalDto)
+
+    @Query("delete from articles where `key` = :key")
+    suspend fun deleteFavorite(key: Int)
+
+    @Query("update articles set comment = :newComment where `key` = :key")
+    suspend fun updateArticle(newComment: String, key: Int)
+
+    @Query("select * from articles")
+    fun getFavoriteArticle(): Flow<List<ArticleLocalDto>>
+
+    @Query("select * from articles")
+    suspend fun getFavorite(): List<ArticleLocalDto>
 }
