@@ -12,9 +12,9 @@
 
         <com.google.android.material.appbar.CollapsingToolbarLayout
             android:layout_width="match_parent"
-            android:layout_height="180dp"
-            app:expandedTitleMarginBottom="60dp"
-            app:expandedTitleMarginStart="60dp"
+            android:layout_height="140dp"
+            app:expandedTitleMarginBottom="20dp"
+            app:expandedTitleMarginStart="40dp"
             app:expandedTitleTextAppearance="@style/expandedText"
             app:layout_scrollFlags="scroll|exitUntilCollapsed"
             app:title="Новости"

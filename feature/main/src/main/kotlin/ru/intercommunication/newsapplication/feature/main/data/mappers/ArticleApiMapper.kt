@@ -11,7 +11,7 @@ class ArticleApiMapper @Inject constructor(): OneWayMapper<ArticleNetworkDto, Ar
     override fun map(from: ArticleNetworkDto): ArticleModel {
         return ArticleModel(
             id = 0,
-            author = from.author,
+            author = from.author ?: "",
             content = from.content ?: "",
             description = from.description ?: "",
             publishedAt = from.publishedAt,

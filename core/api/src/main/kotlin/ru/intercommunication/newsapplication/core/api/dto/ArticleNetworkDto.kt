@@ -5,7 +5,7 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class ArticleNetworkDto(
-    @SerialName("author") val author: String,
+    @SerialName("author") val author: String?,
     @SerialName("content") val content: String?,
     @SerialName("description") val description: String?,
     @SerialName("publishedAt") val publishedAt: String,

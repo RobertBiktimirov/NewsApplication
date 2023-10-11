@@ -58,8 +58,8 @@ class MainFragment : Fragment() {
         viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
                 mainViewModel.newsList.collect { news ->
-                    Toast.makeText(requireContext(), news.toString(), Toast.LENGTH_SHORT).show()
                     newsAdapter.submitList(news)
+                    binding.newsList.scrollToPosition(0)
                 }
             }
         }
