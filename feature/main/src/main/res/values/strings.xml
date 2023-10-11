@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="news_icon_description">news icon</string>
+    <string name="favorite_button_description">favorite button</string>
+</resources>

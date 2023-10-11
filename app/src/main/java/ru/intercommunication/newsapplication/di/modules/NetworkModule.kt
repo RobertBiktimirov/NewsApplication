@@ -11,6 +11,7 @@ import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
+import ru.intercommunication.newsapplication.core.api.services.NewsService
 import ru.intercommunication.newsapplication.core.di.ApplicationContext
 import ru.intercommunication.newsapplication.di.ApplicationScope
 import java.util.concurrent.TimeUnit
@@ -54,4 +55,8 @@ class NetworkModule {
         .addConverterFactory(json.asConverterFactory("application/json".toMediaType()))
         .build()
 
+
+    @[Provides ApplicationScope]
+    fun provideNewsService(retrofit: Retrofit): NewsService =
+        retrofit.create(NewsService::class.java)
 }

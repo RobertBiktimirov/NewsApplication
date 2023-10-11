@@ -4,6 +4,7 @@ import android.app.Application
 import android.content.Context
 import ru.intercommunication.newsapplication.di.AppComponent
 import ru.intercommunication.newsapplication.di.DaggerAppComponent
+import ru.intercommunication.newsapplication.feature.main.di.dependencies.MainDependenciesStore
 
 class NewsApplication : Application() {
 
@@ -16,6 +17,9 @@ class NewsApplication : Application() {
     override fun onCreate() {
         super.onCreate()
         _appComponent = DaggerAppComponent.factory().create(this)
+
+        MainDependenciesStore.dependencies = appComponent
+
     }
 
 

@@ -56,6 +56,8 @@ dependencies {
     implementation(project(":core:api"))
     implementation(project(":core:localStorage"))
     implementation(project(":core:di"))
+    implementation(project(":feature:main"))
+    implementation(project(":feature:details"))
 
     implementation(Dependencies.Android.coreKtx)
     implementation(Dependencies.Android.appcompat)
