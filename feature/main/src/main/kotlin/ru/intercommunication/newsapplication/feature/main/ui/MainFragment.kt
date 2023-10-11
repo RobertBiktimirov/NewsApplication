@@ -59,7 +59,6 @@ class MainFragment : Fragment() {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
                 mainViewModel.newsList.collect { news ->
                     newsAdapter.submitList(news)
-                    binding.newsList.scrollToPosition(0)
                 }
             }
         }
