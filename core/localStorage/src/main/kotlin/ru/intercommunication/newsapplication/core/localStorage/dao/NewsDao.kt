@@ -11,7 +11,7 @@ import ru.intercommunication.newsapplication.core.localStorage.dto.ArticleLocalD
 interface NewsDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun saveFavoriteArticle(articleLocalDto: ArticleLocalDto)
+    suspend fun saveArticle(articles: ArticleLocalDto)
 
     @Query("delete from articles where `key` = :key")
     suspend fun deleteFavorite(key: Int)
@@ -24,4 +24,7 @@ interface NewsDao {
 
     @Query("select * from articles")
     suspend fun getFavorite(): List<ArticleLocalDto>
+
+    @Query("update articles set isFavorite = :isFavorite where `key` = :id")
+    suspend fun updateFavorite(isFavorite: Boolean, id: Int)
 }

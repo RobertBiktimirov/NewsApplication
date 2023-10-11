@@ -5,7 +5,7 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class NewsNetworkDto(
-    @SerialName("articles") val articles: List<ArticleNetrorkDto>,
+    @SerialName("articles") val articles: List<ArticleNetworkDto>,
     @SerialName("status") val status: String,
     @SerialName("totalResults") val totalResults: Int
 )

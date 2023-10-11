@@ -41,11 +41,8 @@ object Dependencies {
         const val material = "com.google.android.material:material:1.9.0"
         const val constraintLayout = "androidx.constraintlayout:constraintlayout:2.1.4"
         private const val lifecycleVersion = "2.6.1"
-        const val viewModelCompose =
-            "androidx.lifecycle:lifecycle-viewmodel-compose:$lifecycleVersion"
         const val viewModelKtx = "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycleVersion"
         const val runtimeKtx = "androidx.lifecycle:lifecycle-runtime-ktx:$lifecycleVersion"
-        const val lifecycleCompose = "androidx.lifecycle:lifecycle-runtime-compose:$lifecycleVersion"
         const val fragmentKtx = "androidx.fragment:fragment-ktx:1.6.1"
         const val lifecycleExtensions = "androidx.lifecycle:lifecycle-extensions:2.2.0"
     }
@@ -66,7 +63,8 @@ object Dependencies {
     }
 
     object Coroutines {
-        const val android = "org.jetbrains.kotlinx:kotlinx-coroutines-android:${Versions.coroutinesVersion}"
+        const val android =
+            "org.jetbrains.kotlinx:kotlinx-coroutines-android:${Versions.coroutinesVersion}"
     }
 
     object DataStore {
@@ -84,5 +82,12 @@ object Dependencies {
         private const val version = "2.46.1"
         const val dependency = "com.google.dagger:dagger:$version"
         const val compiler = "com.google.dagger:dagger-compiler:$version"
+    }
+
+    object Utils {
+        object Glide {
+            private const val version = "4.16.0"
+            const val glide = "com.github.bumptech.glide:glide:$version"
+        }
     }
 }
