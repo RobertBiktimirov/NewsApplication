@@ -9,6 +9,7 @@ interface NewsService {
     @GET("/v2/top-headlines")
     suspend fun getNews(
         @Query("category") category: String = "general",
+        @Query("county") county: String = "ru",
         @Query("apiKey") apiKey: String,
     ): NewsNetworkDto
 

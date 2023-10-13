@@ -3,6 +3,7 @@ plugins {
     id(Dependencies.Android.androidLibPlugin) apply false
     id(Dependencies.Kotlin.kotlinPlugin) apply false
     id(Dependencies.Kotlin.Ksp.plugin) apply false
+    id(Dependencies.Navigation.navSafeArgsPlugin) version Dependencies.Versions.navigationSafeArgsVersion apply false
 }
 
 buildscript {
