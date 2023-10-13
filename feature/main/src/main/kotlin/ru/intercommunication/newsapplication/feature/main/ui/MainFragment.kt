@@ -60,6 +60,8 @@ class MainFragment : Fragment() {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
                 mainViewModel.newsList.collect { news ->
                     newsAdapter.submitList(news)
+                    val oldList = newsAdapter.currentList
+                    if(news.size > oldList.size) binding.newsList.scrollToPosition(0)
                 }
             }
         }

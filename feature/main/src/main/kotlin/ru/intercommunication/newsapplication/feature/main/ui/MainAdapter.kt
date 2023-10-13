@@ -36,11 +36,11 @@ class MainAdapter(
                 if (articleModel.isFavorite) {
                     AppCompatResources.getDrawable(
                         context,
-                        R.drawable.favorite_button
+                        R.drawable.turned
                     )
                 } else {
                     AppCompatResources.getDrawable(
-                        context, R.drawable.not_favorite_button
+                        context, R.drawable.turned_in_not
                     )
                 }
             )

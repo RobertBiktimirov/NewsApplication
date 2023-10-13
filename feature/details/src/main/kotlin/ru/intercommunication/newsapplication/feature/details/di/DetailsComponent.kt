@@ -7,6 +7,7 @@ import ru.intercommunication.newsapplication.feature.details.di.modules.ViewMode
 import ru.intercommunication.newsapplication.feature.details.ui.DetailsFragment
 import javax.inject.Scope
 
+@DetailsFeatureScope
 @Component(
     dependencies = [DetailsDependencies::class],
     modules = [DetailsModule::class, ViewModelModule::class]
