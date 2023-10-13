@@ -14,6 +14,7 @@ dependencyResolutionManagement {
 }
 rootProject.name = "NewsApplication"
 include(":app")
+include(":navigation")
 include(":feature")
 include(":core")
 include(":feature:main")

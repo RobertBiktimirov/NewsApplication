@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/app_navigation"
+    app:startDestination="@id/main_navigation">
+
+
+    <action
+        android:id="@+id/action_global_main_navigation"
+        app:destination="@id/main_navigation" />
+
+    <action
+        android:id="@+id/action_global_details_navigation"
+        app:destination="@id/details_navigation"
+        app:popUpTo="@navigation/main_navigation">
+        <argument
+            android:name="id"
+            app:argType="integer" />
+    </action>
+
+    <include app:graph="@navigation/main_navigation" />
+    <include app:graph="@navigation/details_navigation" />
+
+
+</navigation>

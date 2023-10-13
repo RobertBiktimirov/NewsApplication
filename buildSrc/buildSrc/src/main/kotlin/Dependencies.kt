@@ -75,7 +75,11 @@ object Dependencies {
     }
 
     object Navigation {
-
+        const val version = "2.6.0"
+        const val navSafeArgsPlugin =
+            "androidx.navigation.safeargs"
+        const val fragmentKtx = "androidx.navigation:navigation-fragment-ktx:$version"
+        const val uiKtx = "androidx.navigation:navigation-ui-ktx:$version"
     }
 
     object Dagger {
