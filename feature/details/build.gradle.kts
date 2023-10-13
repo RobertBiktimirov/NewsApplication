@@ -1,14 +1,21 @@
 plugins {
     id("android-setup")
-    id("org.jetbrains.kotlin.android")
 }
 android {
     namespace = ProjectConfig.namespace("feature.details")
 }
 
 dependencies {
+
+
+    implementation(project(":core:localStorage"))
+    implementation(project(":core:di"))
+    implementation(project(":core:utils"))
+    implementation(project(":navigation"))
+
+    implementation(Dependencies.Utils.Glide.glide)
+    implementation(Dependencies.Android.viewModelKtx)
+    implementation(Dependencies.Android.runtimeKtx)
+    implementation(Dependencies.Android.fragmentKtx)
     implementation(Dependencies.Navigation.fragmentKtx)
-    implementation("androidx.legacy:legacy-support-v4:1.0.0")
-    implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.6.2")
-    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.2")
 }
