@@ -10,14 +10,17 @@ import ru.intercommunication.newsapplication.core.localStorage.dto.ArticleLocalD
 @Dao
 interface NewsDao {
 
+    @Query("select * from articles where `key` = :id limit 1")
+    suspend fun getNewsItem(id: Int): ArticleLocalDto
+
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun saveArticle(articles: ArticleLocalDto)
 
     @Query("delete from articles where `key` = :key")
     suspend fun deleteFavorite(key: Int)
 
-    @Query("update articles set comment = :newComment where `key` = :key")
-    suspend fun updateArticle(newComment: String, key: Int)
+    @Query("update articles set comment = :newComment, isFavorite = :isFavorite where `key` = :key")
+    suspend fun updateArticle(newComment: String, isFavorite: Boolean, key: Int)
 
     @Query("select * from articles")
     fun getFavoriteArticle(): Flow<List<ArticleLocalDto>>

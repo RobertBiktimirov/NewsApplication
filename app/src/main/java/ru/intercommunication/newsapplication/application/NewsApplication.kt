@@ -4,6 +4,7 @@ import android.app.Application
 import android.content.Context
 import ru.intercommunication.newsapplication.di.AppComponent
 import ru.intercommunication.newsapplication.di.DaggerAppComponent
+import ru.intercommunication.newsapplication.feature.details.di.dependencies.DetailsDependenciesStore
 import ru.intercommunication.newsapplication.feature.main.di.dependencies.MainDependenciesStore
 
 class NewsApplication : Application() {
@@ -19,6 +20,7 @@ class NewsApplication : Application() {
         _appComponent = DaggerAppComponent.factory().create(this)
 
         MainDependenciesStore.dependencies = appComponent
+        DetailsDependenciesStore.dependencies = appComponent
 
     }
 
