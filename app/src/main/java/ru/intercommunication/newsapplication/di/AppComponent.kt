@@ -3,7 +3,6 @@ package ru.intercommunication.newsapplication.di
 import android.content.Context
 import dagger.BindsInstance
 import dagger.Component
-import ru.intercommunication.newsapplication.MainActivity
 import ru.intercommunication.newsapplication.core.api.services.NewsService
 import ru.intercommunication.newsapplication.core.di.ApplicationContext
 import ru.intercommunication.newsapplication.core.localStorage.dao.NewsDao
@@ -15,6 +14,8 @@ import ru.intercommunication.newsapplication.di.modules.RoomModule
 import ru.intercommunication.newsapplication.feature.details.di.dependencies.DetailsDependencies
 import ru.intercommunication.newsapplication.feature.details.domain.models.ArticleModel
 import ru.intercommunication.newsapplication.feature.main.di.dependencies.MainDependencies
+import ru.intercommunication.newsapplication.ui.MainActivity
+import ru.intercommunication.newsapplication.ui.receiver.AlarmReceiver
 import javax.inject.Scope
 
 @ApplicationScope
@@ -38,6 +39,8 @@ interface AppComponent : MainDependencies, DetailsDependencies {
     override val notificationScheduler: AlarmScheduler<ArticleModel>
 
     fun inject(mainActivity: MainActivity)
+
+    fun inject(alarmReceiver: AlarmReceiver)
 
     @Component.Factory
     interface Factory {

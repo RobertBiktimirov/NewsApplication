@@ -81,6 +81,7 @@ dependencies {
     implementation(project(":core:utils"))
     implementation(project(":feature:main"))
     implementation(project(":feature:details"))
+    implementation(project(":feature:splash"))
     implementation(project(":navigation"))
 
     implementation(Dependencies.Android.coreKtx)

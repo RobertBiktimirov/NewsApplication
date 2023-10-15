@@ -6,9 +6,9 @@ import android.app.PendingIntent
 import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
-import ru.intercommunication.newsapplication.MainActivity
 import ru.intercommunication.newsapplication.R
 import ru.intercommunication.newsapplication.feature.details.domain.models.ArticleModel
+import ru.intercommunication.newsapplication.ui.MainActivity
 import ru.intercommunication.newsapplication.ui.notification.ARTICLE_INTENT_NAME
 
 class AlarmReceiver : BroadcastReceiver() {

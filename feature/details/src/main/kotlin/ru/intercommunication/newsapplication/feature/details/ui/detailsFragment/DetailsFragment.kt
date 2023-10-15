@@ -74,7 +74,6 @@ class DetailsFragment : Fragment() {
             detailsViewModel.getNews(it)
         } ?: throw RuntimeException("id not must be null")
 
-
         viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
                 detailsViewModel.news.collect {

@@ -1,4 +1,4 @@
-package ru.intercommunication.newsapplication
+package ru.intercommunication.newsapplication.ui
 
 import android.Manifest
 import android.content.pm.PackageManager
@@ -7,6 +7,7 @@ import android.os.Bundle
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
+import ru.intercommunication.newsapplication.R
 import ru.intercommunication.newsapplication.application.appComponent
 
 class MainActivity : AppCompatActivity() {

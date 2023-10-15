@@ -3,7 +3,11 @@ package ru.intercommunication.newsapplication.feature.main.ui
 import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.SharingStarted
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 import ru.intercommunication.newsapplication.core.utils.RepositoryException
 import ru.intercommunication.newsapplication.core.utils.RepositoryHttpError
@@ -15,6 +19,16 @@ import javax.inject.Inject
 class MainViewModel @Inject constructor(
     private val repository: MainRepository
 ) : ViewModel() {
+
+    private val _isFavorite: MutableStateFlow<Boolean> = MutableStateFlow(false)
+    val isFavorite = _isFavorite.asStateFlow()
+
+
+    var onlyFavorite = false
+        set(value) {
+            field = value
+            _isFavorite.tryEmit(value)
+        }
 
     init {
         viewModelScope.launch {
@@ -34,7 +48,8 @@ class MainViewModel @Inject constructor(
         }
     }
 
-    val newsList: Flow<List<ArticleModel>> = repository.getNews()
+    val newsList: StateFlow<List<ArticleModel>> =
+        repository.getNews().stateIn(viewModelScope, SharingStarted.Lazily, emptyList())
 
     fun updateFavorite(isFavorite: Boolean, id: Int) {
         viewModelScope.launch {
