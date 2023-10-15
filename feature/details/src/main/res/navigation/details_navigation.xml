@@ -4,6 +4,15 @@
     android:id="@+id/details_navigation"
     app:startDestination="@id/detailFragment">
 
+
+    <action
+        android:id="@+id/action_details_navigation"
+        app:destination="@id/detailFragment">
+        <argument
+            android:name="id"
+            app:argType="integer" />
+    </action>
+
     <fragment
         android:id="@+id/detailFragment"
         android:name="ru.intercommunication.newsapplication.feature.details.ui.DetailsFragment"

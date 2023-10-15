@@ -5,5 +5,5 @@ import ru.intercommunication.newsapplication.feature.details.domain.models.Artic
 interface DetailsRepository {
     suspend fun getNews(id: Int): ArticleModel
 
-    suspend fun saveNewDataDetails(comment: String, isFavorite: Boolean, id: Int)
+    suspend fun saveNewDataDetails(comment: String, id: Int)
 }

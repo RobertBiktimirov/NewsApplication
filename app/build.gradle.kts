@@ -78,6 +78,7 @@ dependencies {
     implementation(project(":core:api"))
     implementation(project(":core:localStorage"))
     implementation(project(":core:di"))
+    implementation(project(":core:utils"))
     implementation(project(":feature:main"))
     implementation(project(":feature:details"))
     implementation(project(":navigation"))

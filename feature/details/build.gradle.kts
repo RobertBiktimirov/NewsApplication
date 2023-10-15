@@ -1,5 +1,6 @@
 plugins {
     id("android-setup")
+    id(Dependencies.Kotlin.kotlinParcelize)
 }
 android {
     namespace = ProjectConfig.namespace("feature.details")

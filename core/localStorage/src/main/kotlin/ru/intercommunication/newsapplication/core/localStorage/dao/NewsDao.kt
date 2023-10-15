@@ -19,8 +19,8 @@ interface NewsDao {
     @Query("delete from articles where `key` = :key")
     suspend fun deleteFavorite(key: Int)
 
-    @Query("update articles set comment = :newComment, isFavorite = :isFavorite where `key` = :key")
-    suspend fun updateArticle(newComment: String, isFavorite: Boolean, key: Int)
+    @Query("update articles set comment = :newComment where `key` = :key")
+    suspend fun updateArticle(newComment: String,  key: Int)
 
     @Query("select * from articles")
     fun getFavoriteArticle(): Flow<List<ArticleLocalDto>>

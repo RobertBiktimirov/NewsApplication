@@ -17,9 +17,9 @@ class DetailsRepositoryImpl @Inject constructor(
         return withContext(Dispatchers.IO) { return@withContext mapper.map(newsDao.getNewsItem(id)) }
     }
 
-    override suspend fun saveNewDataDetails(comment: String, isFavorite: Boolean, id: Int) {
-        withContext(Dispatchers.IO) {
-            newsDao.updateArticle(comment, isFavorite, id)
+    override suspend fun saveNewDataDetails(comment: String, id: Int) {
+        return withContext(Dispatchers.IO) {
+            newsDao.updateArticle(comment, id)
         }
     }
 }

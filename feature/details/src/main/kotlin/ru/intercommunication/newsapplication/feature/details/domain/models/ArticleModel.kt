@@ -1,5 +1,9 @@
 package ru.intercommunication.newsapplication.feature.details.domain.models
 
+import android.os.Parcelable
+import kotlinx.parcelize.Parcelize
+
+@Parcelize
 data class ArticleModel(
     val id: Int,
     val author: String,
@@ -12,9 +16,26 @@ data class ArticleModel(
     val urlToImage: String,
     var isFavorite: Boolean = false,
     var comment: String = ""
-)
+): Parcelable {
 
+    companion object {
+        fun toEmpty() =
+            ArticleModel(
+                0,
+                "",
+                "",
+                "",
+                "",
+                SourceModel(null, ""),
+                "",
+                "",
+                ""
+            )
+    }
+
+}
+@Parcelize
 data class SourceModel(
     val id: String?,
     val name: String
-)
+): Parcelable

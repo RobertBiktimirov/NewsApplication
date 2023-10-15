@@ -14,6 +14,8 @@ object Dependencies {
             "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion"
         const val kotlinPlugin = "org.jetbrains.kotlin.android"
 
+        const val kotlinParcelize = "kotlin-parcelize"
+
         object Serialization {
             const val version = "1.5.1"
             const val kotlinSerializationPlugin =
