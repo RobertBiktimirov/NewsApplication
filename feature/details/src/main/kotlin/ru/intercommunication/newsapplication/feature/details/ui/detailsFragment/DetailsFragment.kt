@@ -1,11 +1,15 @@
 package ru.intercommunication.newsapplication.feature.details.ui.detailsFragment
 
+import android.Manifest
 import android.content.Context
+import android.content.pm.PackageManager
+import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
 import androidx.core.widget.doAfterTextChanged
 import androidx.fragment.app.Fragment
@@ -95,26 +99,42 @@ class DetailsFragment : Fragment() {
 
         binding.reminderTitle.setOnClickListener {
 
-            val selectReminderListenerImpl = object : SelectReminder {
-                override fun select(reminder: ReminderTime) {
-                    detailsViewModel.saveReminder(reminder)
-                    changeReminder(reminder)
-                    when (reminder) {
-                        ReminderTime.NOTHING -> alarmScheduler.cancel(detailsViewModel.news.value)
-                        else -> alarmScheduler.schedule(
-                            detailsViewModel.news.value,
-                            reminder.millisecond
-                        )
-                    }
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+                val isNotificationPermissionGranted = ContextCompat.checkSelfPermission(
+                    requireContext(),
+                    Manifest.permission.POST_NOTIFICATIONS
+                ) == PackageManager.PERMISSION_GRANTED
+
+                if (!isNotificationPermissionGranted) {
+                    requestPermissionLauncher.launch(Manifest.permission.POST_NOTIFICATIONS)
+                } else {
+                    startBottomReminder()
+                }
+            } else {
+                startBottomReminder()
+            }
+        }
+    }
+
+    private fun startBottomReminder() {
+        val selectReminderListenerImpl = object : SelectReminder {
+            override fun select(reminder: ReminderTime) {
+                detailsViewModel.saveReminder(reminder)
+                changeReminder(reminder)
+                when (reminder) {
+                    ReminderTime.NOTHING -> alarmScheduler.cancel(detailsViewModel.news.value)
+                    else -> alarmScheduler.schedule(
+                        detailsViewModel.news.value,
+                        reminder.millisecond
+                    )
                 }
             }
-
-            ReminderBottomSheetFragment(selectReminderListenerImpl).show(
-                childFragmentManager,
-                "reminder_bottom"
-            )
         }
 
+        ReminderBottomSheetFragment(selectReminderListenerImpl).show(
+            childFragmentManager,
+            "reminder_bottom"
+        )
     }
 
     private fun changeView(articleModel: ArticleModel) {
