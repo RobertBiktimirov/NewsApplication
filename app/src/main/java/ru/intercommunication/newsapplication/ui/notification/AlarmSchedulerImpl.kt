@@ -9,6 +9,7 @@ import ru.intercommunication.newsapplication.core.di.ApplicationContext
 import ru.intercommunication.newsapplication.core.utils.AlarmScheduler
 import ru.intercommunication.newsapplication.feature.details.domain.models.ArticleModel
 import ru.intercommunication.newsapplication.ui.receiver.AlarmReceiver
+import java.util.Calendar
 import javax.inject.Inject
 
 const val ARTICLE_INTENT_NAME = "article"
@@ -34,7 +35,11 @@ class AlarmSchedulerImpl @Inject constructor(@ApplicationContext private val con
             PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
         )
 
-        manager.setExactAndAllowWhileIdle(AlarmManager.RTC_WAKEUP, 0L, pending)
+        manager.setExactAndAllowWhileIdle(
+            AlarmManager.RTC_WAKEUP,
+            Calendar.getInstance().timeInMillis + time,
+            pending
+        )
     }
 
     override fun cancel(t: ArticleModel) {

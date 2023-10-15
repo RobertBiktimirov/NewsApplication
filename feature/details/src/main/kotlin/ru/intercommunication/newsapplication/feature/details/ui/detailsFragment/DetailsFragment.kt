@@ -1,10 +1,11 @@
-package ru.intercommunication.newsapplication.feature.details.ui
+package ru.intercommunication.newsapplication.feature.details.ui.detailsFragment
 
 import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.view.isVisible
 import androidx.core.widget.doAfterTextChanged
 import androidx.fragment.app.Fragment
@@ -22,12 +23,21 @@ import ru.intercommunication.newsapplication.feature.details.R
 import ru.intercommunication.newsapplication.feature.details.databinding.FragmentDetailsBinding
 import ru.intercommunication.newsapplication.feature.details.di.storage.DetailsComponentStorage
 import ru.intercommunication.newsapplication.feature.details.domain.models.ArticleModel
+import ru.intercommunication.newsapplication.feature.details.domain.models.ReminderTime
+import ru.intercommunication.newsapplication.feature.details.ui.bottomReminder.ReminderBottomSheetFragment
+import ru.intercommunication.newsapplication.feature.details.ui.bottomReminder.SelectReminder
 import javax.inject.Inject
 
 class DetailsFragment : Fragment() {
 
     private var _binding: FragmentDetailsBinding? = null
     private val binding get() = _binding ?: throw RuntimeException("binding not must be null")
+
+    private val requestPermissionLauncher = registerForActivityResult(
+        ActivityResultContracts.RequestPermission(),
+    ) { _: Boolean ->
+
+    }
 
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
@@ -83,6 +93,28 @@ class DetailsFragment : Fragment() {
             binding.commentValue.isCursorVisible = false
         }
 
+        binding.reminderTitle.setOnClickListener {
+
+            val selectReminderListenerImpl = object : SelectReminder {
+                override fun select(reminder: ReminderTime) {
+                    detailsViewModel.saveReminder(reminder)
+                    changeReminder(reminder)
+                    when (reminder) {
+                        ReminderTime.NOTHING -> alarmScheduler.cancel(detailsViewModel.news.value)
+                        else -> alarmScheduler.schedule(
+                            detailsViewModel.news.value,
+                            reminder.millisecond
+                        )
+                    }
+                }
+            }
+
+            ReminderBottomSheetFragment(selectReminderListenerImpl).show(
+                childFragmentManager,
+                "reminder_bottom"
+            )
+        }
+
     }
 
     private fun changeView(articleModel: ArticleModel) {
@@ -102,6 +134,20 @@ class DetailsFragment : Fragment() {
             contentValue.isVisible = articleModel.content.isNotEmpty()
             commentValue.setText(articleModel.comment)
 
+            changeReminder(articleModel.reminder)
+
+        }
+    }
+
+    private fun changeReminder(
+        reminder: ReminderTime
+    ) {
+        binding.reminderValue.text = when (reminder) {
+            ReminderTime.FIFTEEN_MINUTE -> getString(R.string.fifteen_minute)
+            ReminderTime.HOUR -> getString(R.string.hour)
+            ReminderTime.DAY -> getString(R.string.day)
+            ReminderTime.SEVEN_DAY -> getString(R.string.seven_day)
+            ReminderTime.NOTHING -> getString(R.string.nothing_reminder)
         }
     }
 

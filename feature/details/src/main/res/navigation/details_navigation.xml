@@ -15,7 +15,7 @@
 
     <fragment
         android:id="@+id/detailFragment"
-        android:name="ru.intercommunication.newsapplication.feature.details.ui.DetailsFragment"
+        android:name="ru.intercommunication.newsapplication.feature.details.ui.detailsFragment.DetailsFragment"
         android:label="DetailsFragment" />
 
 </navigation>

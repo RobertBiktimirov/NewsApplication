@@ -1,4 +1,4 @@
-package ru.intercommunication.newsapplication.feature.details.ui
+package ru.intercommunication.newsapplication.feature.details.ui.detailsFragment
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -6,6 +6,7 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 import ru.intercommunication.newsapplication.feature.details.domain.models.ArticleModel
+import ru.intercommunication.newsapplication.feature.details.domain.models.ReminderTime
 import ru.intercommunication.newsapplication.feature.details.domain.repositories.DetailsRepository
 import javax.inject.Inject
 
@@ -24,7 +25,13 @@ class DetailsViewModel @Inject constructor(
 
     fun saveComment(comment: String) {
         viewModelScope.launch {
-            detailsRepository.saveNewDataDetails(comment, news.value.id)
+            detailsRepository.saveCommentDetails(comment, news.value.id)
+        }
+    }
+
+    fun saveReminder(reminderTime: ReminderTime) {
+        viewModelScope.launch {
+            detailsRepository.saveReminder(reminderTime, news.value.id)
         }
     }
 

@@ -5,7 +5,7 @@
     android:id="@+id/all_body"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.DetailsFragment">
+    tools:context=".ui.detailsFragment.DetailsFragment">
 
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/app_bar_layout"
@@ -72,7 +72,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="16dp"
-                android:text="Description"
+                android:text="@string/description"
                 android:textSize="20sp"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
@@ -106,16 +106,17 @@
                 app:layout_constraintTop_toBottomOf="@id/description_value"
                 tools:text="A teacher was killed Friday and several people injured in a knife attack at a public school in Arras, northern France, according to CNN affiliate BFMTV.\r\nA worker at the school is in critical conditi… [+1811 chars]" />
 
-            <View
-                android:id="@+id/first_line"
-                android:layout_width="0dp"
-                android:layout_height="1dp"
-                android:layout_marginHorizontal="16dp"
-                android:layout_marginTop="16dp"
-                android:background="#33FFFFFF"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/content_value" />
+<!--            <View-->
+<!--                android:id="@+id/first_line"-->
+<!--                android:layout_width="0dp"-->
+<!--                android:layout_height="1dp"-->
+<!--                android:layout_marginHorizontal="16dp"-->
+<!--                android:layout_marginTop="16dp"-->
+<!--                android:background="#33FFFFFF"-->
+<!--                app:layout_constraintEnd_toEndOf="parent"-->
+<!--                app:layout_constraintStart_toStartOf="parent"-->
+<!--                app:layout_constraintTop_toBottomOf="@id/content_value" />-->
+
 
 
             <EditText
@@ -126,7 +127,7 @@
                 android:layout_marginTop="16dp"
                 android:background="@drawable/bg_normal_input_task"
                 android:gravity="top|start"
-                android:hint="Комментарий"
+                android:hint="@string/comment"
                 android:importantForAutofill="no"
                 android:inputType="textMultiLine"
                 android:minHeight="100dp"
@@ -134,8 +135,7 @@
                 android:scrollHorizontally="false"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/first_line" />
-
+                app:layout_constraintTop_toBottomOf="@id/content_value" />
 
             <Button
                 android:id="@+id/save_button"
@@ -143,12 +143,48 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:backgroundTint="?attr/colorPrimary"
-                android:text="Сохранить"
+                android:text="@string/save"
                 android:visibility="gone"
                 app:layout_constraintEnd_toEndOf="@id/comment_value"
                 app:layout_constraintStart_toStartOf="@id/comment_value"
                 app:layout_constraintTop_toBottomOf="@id/comment_value" />
 
+<!--            <View-->
+<!--                android:id="@+id/second_line"-->
+<!--                android:layout_width="0dp"-->
+<!--                android:layout_height="1dp"-->
+<!--                android:layout_marginHorizontal="16dp"-->
+<!--                android:layout_marginTop="16dp"-->
+<!--                android:background="#33FFFFFF"-->
+<!--                app:layout_constraintEnd_toEndOf="parent"-->
+<!--                app:layout_constraintStart_toStartOf="parent"-->
+<!--                app:layout_constraintTop_toBottomOf="@id/save_button" />-->
+
+            <TextView
+                android:id="@+id/reminder_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/save_button"
+                android:layout_margin="16dp"
+                app:layout_constraintStart_toStartOf="parent"
+                android:text="@string/reminder_title"
+                android:textColor="@drawable/reminder_text_selector"
+                android:focusable="true"
+                android:clickable="true"
+                android:textSize="20sp"
+                />
+
+
+            <TextView
+                android:id="@+id/reminder_value"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="16dp"
+                android:textSize="16sp"
+                app:layout_constraintBottom_toBottomOf="@+id/reminder_title"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/reminder_title"
+                tools:text="- 7 суток" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

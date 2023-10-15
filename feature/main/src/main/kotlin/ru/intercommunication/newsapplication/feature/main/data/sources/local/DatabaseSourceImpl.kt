@@ -17,7 +17,7 @@ class DatabaseSourceImpl @Inject constructor(
     }
 
     override suspend fun saveNews(newList: MutableList<ArticleModel>) {
-        val oldList = newsDao.getFavorite().map { articleDatabaseMappers.map(it) }
+        val oldList = newsDao.getNewsList().map { articleDatabaseMappers.map(it) }
         for (new in newList) {
             if (new.title !in oldList.map { it.title }) {
                 newsDao.saveArticle(articleDatabaseMappers.reverseMap(new))
@@ -26,7 +26,7 @@ class DatabaseSourceImpl @Inject constructor(
     }
 
     override fun getNews(): Flow<List<ArticleModel>> {
-        return newsDao.getFavoriteArticle()
+        return newsDao.getNewsFlow()
             .map { list -> list.map { articleDatabaseMappers.map(it) }.reversed() }
     }
 }

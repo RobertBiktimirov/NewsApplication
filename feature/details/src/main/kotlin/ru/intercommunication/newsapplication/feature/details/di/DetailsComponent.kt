@@ -4,7 +4,7 @@ import dagger.Component
 import ru.intercommunication.newsapplication.feature.details.di.dependencies.DetailsDependencies
 import ru.intercommunication.newsapplication.feature.details.di.modules.DetailsModule
 import ru.intercommunication.newsapplication.feature.details.di.modules.ViewModelModule
-import ru.intercommunication.newsapplication.feature.details.ui.DetailsFragment
+import ru.intercommunication.newsapplication.feature.details.ui.detailsFragment.DetailsFragment
 import javax.inject.Scope
 
 @DetailsFeatureScope

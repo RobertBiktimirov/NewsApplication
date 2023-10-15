@@ -1,9 +1,11 @@
 package ru.intercommunication.newsapplication.feature.details.data.mappers
 
 import ru.intercommunication.newsapplication.core.localStorage.dto.ArticleLocalDto
+import ru.intercommunication.newsapplication.core.localStorage.dto.ReminderTimeDto
 import ru.intercommunication.newsapplication.core.localStorage.dto.SourceLocalDto
 import ru.intercommunication.newsapplication.core.utils.Mapper
 import ru.intercommunication.newsapplication.feature.details.domain.models.ArticleModel
+import ru.intercommunication.newsapplication.feature.details.domain.models.ReminderTime
 import ru.intercommunication.newsapplication.feature.details.domain.models.SourceModel
 import javax.inject.Inject
 
@@ -21,7 +23,14 @@ class ArticleDatabaseMappers @Inject constructor() : Mapper<ArticleLocalDto, Art
             url = from.url,
             urlToImage = from.urlToImage,
             isFavorite = from.isFavorite,
-            comment = from.comment
+            comment = from.comment,
+            reminder = when(from.reminder) {
+                ReminderTimeDto.FIFTEEN_MINUTE -> ReminderTime.FIFTEEN_MINUTE
+                ReminderTimeDto.HOUR -> ReminderTime.HOUR
+                ReminderTimeDto.DAY -> ReminderTime.DAY
+                ReminderTimeDto.SEVEN_DAY -> ReminderTime.SEVEN_DAY
+                ReminderTimeDto.NOTHING -> ReminderTime.NOTHING
+            }
         )
     }
 
@@ -37,7 +46,14 @@ class ArticleDatabaseMappers @Inject constructor() : Mapper<ArticleLocalDto, Art
             url = from.url,
             urlToImage = from.urlToImage,
             isFavorite = from.isFavorite,
-            comment = from.comment
+            comment = from.comment,
+            reminder = when(from.reminder) {
+                ReminderTime.FIFTEEN_MINUTE -> ReminderTimeDto.FIFTEEN_MINUTE
+                ReminderTime.HOUR -> ReminderTimeDto.HOUR
+                ReminderTime.DAY -> ReminderTimeDto.DAY
+                ReminderTime.SEVEN_DAY -> ReminderTimeDto.SEVEN_DAY
+                ReminderTime.NOTHING -> ReminderTimeDto.NOTHING
+            }
         )
     }
 

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="reminder_title">Прочитать позже</string>
+    <string name="save">Сохранить</string>
+    <string name="comment">Комментарий</string>
+    <string name="description">Описание</string>
+
+    <string name="fifteen_minute">- через 15 минут</string>
+    <string name="hour">- через час</string>
+    <string name="day">- через сутки</string>
+    <string name="seven_day">- через 7 дней</string>
+
+    <string name="nothing_reminder">Не напоминать</string>
+    <string name="select_time">Выберите время</string>
+
+</resources>

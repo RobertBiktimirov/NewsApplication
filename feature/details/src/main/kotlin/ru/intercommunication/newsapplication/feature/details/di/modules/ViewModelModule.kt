@@ -6,7 +6,7 @@ import dagger.Module
 import dagger.multibindings.IntoMap
 import ru.intercommunication.newsapplication.core.di.ViewModelBuilderModule
 import ru.intercommunication.newsapplication.core.di.ViewModelKey
-import ru.intercommunication.newsapplication.feature.details.ui.DetailsViewModel
+import ru.intercommunication.newsapplication.feature.details.ui.detailsFragment.DetailsViewModel
 
 @Module(includes = [ViewModelBuilderModule::class])
 internal interface ViewModelModule {

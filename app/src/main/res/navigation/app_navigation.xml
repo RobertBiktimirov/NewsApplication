@@ -12,7 +12,9 @@
     <action
         android:id="@+id/action_global_details_navigation"
         app:destination="@id/details_navigation"
-        app:popUpTo="@navigation/main_navigation">
+        app:popUpTo="@navigation/main_navigation"
+        app:enterAnim="@anim/slide_in_right"
+        app:exitAnim="@anim/slide_out_left">
         <argument
             android:name="id"
             app:argType="integer" />
