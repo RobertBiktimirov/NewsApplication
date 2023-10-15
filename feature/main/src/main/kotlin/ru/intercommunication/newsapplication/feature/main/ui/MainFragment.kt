@@ -56,12 +56,23 @@ class MainFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         setupRecyclerView()
 
+        if (requireActivity().intent.getIntExtra("bundle_news_id", -1) != -1) {
+            findNavController().apply {
+                popBackStack()
+                navigate(
+                    AppNavigationDirections.actionGlobalDetailsNavigation(
+                        requireActivity().intent.getIntExtra("bundle_news_id", -1)
+                    )
+                )
+            }
+        }
+
         viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
                 mainViewModel.newsList.collect { news ->
                     newsAdapter.submitList(news)
                     val oldList = newsAdapter.currentList
-                    if(news.size > oldList.size) binding.newsList.scrollToPosition(0)
+                    if (news.size > oldList.size) binding.newsList.scrollToPosition(0)
                 }
             }
         }
@@ -78,7 +89,11 @@ class MainFragment : Fragment() {
     }
 
     private fun newsClickHandler(articleModel: ArticleModel) {
-        findNavController().navigate(AppNavigationDirections.actionGlobalDetailsNavigation(articleModel.id))
+        findNavController().navigate(
+            AppNavigationDirections.actionGlobalDetailsNavigation(
+                articleModel.id
+            )
+        )
     }
 
     override fun onDestroyView() {

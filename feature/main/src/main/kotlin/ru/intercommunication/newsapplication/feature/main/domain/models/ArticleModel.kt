@@ -11,10 +11,19 @@ data class ArticleModel(
     val url: String,
     val urlToImage: String,
     var isFavorite: Boolean = false,
-    var comment: String = ""
+    var comment: String = "",
+    val reminder: ReminderTime
 )
 
 data class SourceModel(
     val id: String?,
     val name: String
 )
+
+enum class ReminderTime {
+    FIFTEEN_MINUTE,
+    HOUR,
+    DAY,
+    SEVEN_DAY,
+    NOTHING
+}

@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">NewsApplication</string>
+    <string name="notification_description">Уведомления нужны для напоминалок</string>
 </resources>

@@ -20,6 +20,18 @@
             app:title="Новости"
             app:titleCollapseMode="scale">
 
+            <ImageView
+                android:id="@+id/turned"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end|bottom"
+                android:layout_marginEnd="25dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:background="@drawable/bg_favorite_button_item_news"
+                android:src="@drawable/turned"
+                app:layout_constraintVertical_bias="1.0" />
+
             <androidx.appcompat.widget.Toolbar
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
