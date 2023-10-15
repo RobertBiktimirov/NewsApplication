@@ -3,4 +3,5 @@
     <item name="action_global_details_navigation" type="id"/>
     <item name="action_global_favorite_navigation" type="id"/>
     <item name="action_global_main_navigation" type="id"/>
+    <item name="action_global_splash_navigation" type="id"/>
 </resources>

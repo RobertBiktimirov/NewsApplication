@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
@@ -14,7 +15,9 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
+import ru.intercommunication.newsapplication.feature.main.R
 import ru.intercommunication.newsapplication.feature.main.databinding.FragmentMainBinding
 import ru.intercommunication.newsapplication.feature.main.di.storage.MainComponentStorage
 import ru.intercommunication.newsapplication.feature.main.domain.models.ArticleModel
@@ -75,6 +78,35 @@ class MainFragment : Fragment() {
                     if (news.size > oldList.size) binding.newsList.scrollToPosition(0)
                 }
             }
+        }
+
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                mainViewModel.isFavorite.collectLatest { flag ->
+                    val list = if (flag) {
+                        binding.turned.setImageDrawable(
+                            ContextCompat.getDrawable(
+                                requireContext(),
+                                R.drawable.turned
+                            )
+                        )
+                        mainViewModel.newsList.value.filter { it.isFavorite }
+                    } else {
+                        binding.turned.setImageDrawable(
+                            ContextCompat.getDrawable(
+                                requireContext(),
+                                R.drawable.turned_in_not
+                            )
+                        )
+                        mainViewModel.newsList.value
+                    }
+                    newsAdapter.submitList(list)
+                }
+            }
+        }
+
+        binding.turned.setOnClickListener {
+            mainViewModel.onlyFavorite = !mainViewModel.onlyFavorite
         }
     }
 
