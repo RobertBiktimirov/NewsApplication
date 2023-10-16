@@ -11,4 +11,8 @@ interface MainRepository {
     suspend fun loadScreen(): RepositoryResult<Unit>
 
     fun getNews(): Flow<List<ArticleModel>>
+
+    suspend fun getNewsByQuery(query: String): RepositoryResult<List<ArticleModel>>
+
+    suspend fun saveNews(articleModel: ArticleModel): Int
 }

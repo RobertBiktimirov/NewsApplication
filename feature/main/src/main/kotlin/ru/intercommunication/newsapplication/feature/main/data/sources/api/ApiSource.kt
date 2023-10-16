@@ -5,4 +5,6 @@ import ru.intercommunication.newsapplication.feature.main.domain.models.ArticleM
 interface ApiSource {
 
     suspend fun getNews(): List<ArticleModel>
+
+    suspend fun getNewsByQuery(query: String): List<ArticleModel>
 }

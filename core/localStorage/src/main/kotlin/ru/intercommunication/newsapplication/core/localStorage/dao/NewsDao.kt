@@ -14,6 +14,10 @@ interface NewsDao {
     @Query("select * from articles where `key` = :id limit 1")
     suspend fun getNewsItem(id: Int): ArticleLocalDto
 
+
+    @Query("select `key` from articles where title = :title limit 1")
+    suspend fun getNewsIdByTitle(title: String): Int
+
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun saveArticle(articles: ArticleLocalDto)
 

@@ -7,7 +7,10 @@ interface DatabaseSource {
 
     suspend fun updateStateFavorite(isFavorite: Boolean, id: Int)
 
-    suspend fun saveNews(newList: MutableList<ArticleModel>)
+    suspend fun saveListNews(newList: MutableList<ArticleModel>)
+
+    suspend fun saveNews(news: ArticleModel): Int
 
     fun getNews(): Flow<List<ArticleModel>>
+
 }

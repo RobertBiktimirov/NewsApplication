@@ -6,7 +6,8 @@ import ru.intercommunication.newsapplication.feature.main.di.module.ApiModule
 import ru.intercommunication.newsapplication.feature.main.di.module.DatabaseModule
 import ru.intercommunication.newsapplication.feature.main.di.module.MainModule
 import ru.intercommunication.newsapplication.feature.main.di.module.ViewModelModule
-import ru.intercommunication.newsapplication.feature.main.ui.MainFragment
+import ru.intercommunication.newsapplication.feature.main.ui.main.MainFragment
+import ru.intercommunication.newsapplication.feature.main.ui.search.SearchFragment
 import javax.inject.Scope
 
 @MainFeatureScope
@@ -17,6 +18,8 @@ import javax.inject.Scope
 internal interface MainComponent {
 
     fun inject(mainFragment: MainFragment)
+
+    fun inject(searchFragment: SearchFragment)
 
     @Component.Factory
     interface Factory {

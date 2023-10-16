@@ -2,4 +2,7 @@
 <resources>
     <string name="news_icon_description">news icon</string>
     <string name="favorite_button_description">favorite button</string>
+    <string name="search">Искать по названию</string>
+    <string name="news_empty">Новостей не найдено</string>
+    <string name="no_internet">Нет соединения с интернетом</string>
 </resources>

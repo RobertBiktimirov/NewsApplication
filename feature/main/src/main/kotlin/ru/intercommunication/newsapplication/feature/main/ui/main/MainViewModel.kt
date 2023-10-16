@@ -1,4 +1,4 @@
-package ru.intercommunication.newsapplication.feature.main.ui
+package ru.intercommunication.newsapplication.feature.main.ui.main
 
 import android.util.Log
 import androidx.lifecycle.ViewModel
