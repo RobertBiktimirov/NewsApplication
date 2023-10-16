@@ -12,4 +12,10 @@ interface NewsService {
         @Query("apiKey") apiKey: String,
     ): NewsNetworkDto
 
+    @GET("/v2/top-headlines")
+    suspend fun getNewsByQuery(
+        @Query("q") query: String,
+        @Query("apiKey") apiKey: String
+    ): NewsNetworkDto
+
 }

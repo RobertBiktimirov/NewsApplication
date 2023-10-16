@@ -17,4 +17,8 @@ class ApiSourceImpl @Inject constructor(
     override suspend fun getNews(): List<ArticleModel> {
         return newsService.getNews(apiKey = API_KEY).articles.map { apiMapper.map(it) }
     }
+
+    override suspend fun getNewsByQuery(query: String): List<ArticleModel> {
+        return newsService.getNewsByQuery(query, API_KEY).articles.map { apiMapper.map(it) }
+    }
 }

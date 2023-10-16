@@ -16,12 +16,21 @@ class DatabaseSourceImpl @Inject constructor(
         newsDao.updateFavorite(isFavorite, id)
     }
 
-    override suspend fun saveNews(newList: MutableList<ArticleModel>) {
+    override suspend fun saveListNews(newList: MutableList<ArticleModel>) {
         val oldList = newsDao.getNewsList().map { articleDatabaseMappers.map(it) }
         for (new in newList) {
             if (new.title !in oldList.map { it.title }) {
                 newsDao.saveArticle(articleDatabaseMappers.reverseMap(new))
             }
+        }
+    }
+
+    override suspend fun saveNews(news: ArticleModel): Int {
+        return if (news.title !in newsDao.getNewsList().map { it.title }) {
+            newsDao.saveArticle(articleDatabaseMappers.reverseMap(news))
+            newsDao.getNewsIdByTitle(news.title)
+        } else {
+            newsDao.getNewsIdByTitle(news.title)
         }
     }
 

@@ -1,4 +1,4 @@
-package ru.intercommunication.newsapplication.feature.main.ui
+package ru.intercommunication.newsapplication.feature.main.ui.main
 
 import android.content.Context
 import android.os.Bundle
@@ -21,6 +21,7 @@ import ru.intercommunication.newsapplication.feature.main.R
 import ru.intercommunication.newsapplication.feature.main.databinding.FragmentMainBinding
 import ru.intercommunication.newsapplication.feature.main.di.storage.MainComponentStorage
 import ru.intercommunication.newsapplication.feature.main.domain.models.ArticleModel
+import ru.intercommunication.newsapplication.feature.main.ui.NewsListAdapter
 import ru.intercommunication.newsapplication.navigation.AppNavigationDirections
 import javax.inject.Inject
 
@@ -30,7 +31,7 @@ class MainFragment : Fragment() {
     private val binding get() = _binding ?: throw RuntimeException("binding not must be null")
 
     private val newsAdapter by lazy {
-        MainAdapter(::newsClickHandler, ::favoriteClickHandler)
+        NewsListAdapter(::newsClickHandler, ::favoriteClickHandler)
     }
 
     @Inject
@@ -59,17 +60,6 @@ class MainFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         setupRecyclerView()
 
-        if (requireActivity().intent.getIntExtra("bundle_news_id", -1) != -1) {
-            findNavController().apply {
-                popBackStack()
-                navigate(
-                    AppNavigationDirections.actionGlobalDetailsNavigation(
-                        requireActivity().intent.getIntExtra("bundle_news_id", -1)
-                    )
-                )
-            }
-        }
-
         viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
                 mainViewModel.newsList.collect { news ->
@@ -87,7 +77,7 @@ class MainFragment : Fragment() {
                         binding.turned.setImageDrawable(
                             ContextCompat.getDrawable(
                                 requireContext(),
-                                R.drawable.turned
+                                R.drawable.favorite_button
                             )
                         )
                         mainViewModel.newsList.value.filter { it.isFavorite }
@@ -95,7 +85,7 @@ class MainFragment : Fragment() {
                         binding.turned.setImageDrawable(
                             ContextCompat.getDrawable(
                                 requireContext(),
-                                R.drawable.turned_in_not
+                                R.drawable.not_favorite_button
                             )
                         )
                         mainViewModel.newsList.value
@@ -107,6 +97,10 @@ class MainFragment : Fragment() {
 
         binding.turned.setOnClickListener {
             mainViewModel.onlyFavorite = !mainViewModel.onlyFavorite
+        }
+
+        binding.search.setOnClickListener {
+            findNavController().navigate(R.id.action_mainFragment_to_searchFragment)
         }
     }
 

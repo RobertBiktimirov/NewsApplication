@@ -1,7 +1,6 @@
 package ru.intercommunication.newsapplication.feature.main.ui
 
 import android.content.Context
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.appcompat.content.res.AppCompatResources
@@ -13,11 +12,12 @@ import ru.intercommunication.newsapplication.feature.main.R
 import ru.intercommunication.newsapplication.feature.main.databinding.ItemMainListBinding
 import ru.intercommunication.newsapplication.feature.main.domain.models.ArticleModel
 
-class MainAdapter(
+class NewsListAdapter(
     private val newsClickListener: (ArticleModel) -> Unit,
-    private val favoriteClickListener: (isFavorite: Boolean, id: Int) -> Unit
-) : ListAdapter<ArticleModel, MainAdapter.MainViewHolder>(MainDiffUtil()) {
-    class MainViewHolder(
+    private val favoriteClickListener: (isFavorite: Boolean, id: Int) -> Unit,
+    private val setFavoriteAndSaveNews: ((ArticleModel) -> Unit)? = null
+) : ListAdapter<ArticleModel, NewsListAdapter.NewsViewHolder>(MainDiffUtil()) {
+    class NewsViewHolder(
         val binding: ItemMainListBinding,
         private val context: Context
     ) :
@@ -36,27 +36,30 @@ class MainAdapter(
                 if (articleModel.isFavorite) {
                     AppCompatResources.getDrawable(
                         context,
-                        R.drawable.turned
+                        R.drawable.favorite_button
                     )
                 } else {
                     AppCompatResources.getDrawable(
-                        context, R.drawable.turned_in_not
+                        context, R.drawable.not_favorite_button
                     )
                 }
             )
         }
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MainViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NewsViewHolder {
         val inflater = LayoutInflater.from(parent.context)
         val binding = ItemMainListBinding.inflate(inflater)
-        val holder = MainViewHolder(binding, parent.context)
-
-        Log.d("recyclerViewTest", "holder -> $holder")
+        val holder = NewsViewHolder(binding, parent.context)
 
         holder.binding.favoriteButton.setOnClickListener {
             val article = getItem(holder.adapterPosition)
-            favoriteClickListener(!article.isFavorite, article.id)
+
+            setFavoriteAndSaveNews?.let {
+                it(article)
+            } ?: run {
+                favoriteClickListener(!article.isFavorite, article.id)
+            }
         }
 
         holder.binding.imgNews.setOnClickListener {
@@ -66,7 +69,7 @@ class MainAdapter(
         return holder
     }
 
-    override fun onBindViewHolder(holder: MainViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: NewsViewHolder, position: Int) {
         holder.bind(getItem(position))
     }
 }
