@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/all_body"
+    android:background="#161618"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.detailsFragment.DetailsFragment">
@@ -30,7 +31,7 @@
                 android:scaleType="centerCrop"
                 app:layout_collapseMode="parallax"
                 app:layout_collapseParallaxMultiplier="0"
-                tools:src="@drawable/img" />
+                tools:src="@drawable/newspaper_img" />
 
             <androidx.appcompat.widget.Toolbar
                 android:layout_width="match_parent"
@@ -74,6 +75,7 @@
                 android:layout_margin="16dp"
                 android:text="@string/description"
                 android:textSize="20sp"
+                android:textColor="#D1D1D6"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -86,6 +88,7 @@
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="16dp"
+                android:textColor="#D1D1D6"
                 android:lineSpacingMultiplier="1.5"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -101,6 +104,7 @@
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="16dp"
                 android:lineSpacingMultiplier="1.5"
+                android:textColor="#D1D1D6"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/description_value"
@@ -132,6 +136,8 @@
                 android:inputType="textMultiLine"
                 android:minHeight="100dp"
                 android:scrollbars="vertical"
+                android:textColor="#D1D1D6"
+                android:textColorHint="#8E8E93"
                 android:scrollHorizontally="false"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -181,6 +187,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="16dp"
                 android:textSize="16sp"
+                android:textColor="#D1D1D6"
                 app:layout_constraintBottom_toBottomOf="@+id/reminder_title"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="@+id/reminder_title"

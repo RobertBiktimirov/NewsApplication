@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:background="#161618"
     android:layout_height="match_parent">
 
     <com.google.android.material.appbar.AppBarLayout
@@ -18,6 +19,8 @@
             app:expandedTitleTextAppearance="@style/expandedText"
             app:layout_scrollFlags="scroll|exitUntilCollapsed"
             app:title="Новости"
+            app:expandedTitleTextColor="#FFFFFF"
+            app:collapsedTitleTextColor="#FFFFFF"
             app:titleCollapseMode="scale">
             <androidx.appcompat.widget.Toolbar
                 android:layout_width="match_parent"
